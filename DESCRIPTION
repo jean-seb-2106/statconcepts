@@ -1,6 +1,6 @@
 Package: statconcepts
 Title: Concepts Statistiques
-Version: 0.0.0.9000
+Version: 1.0
 Authors@R: 
     person("Jean", "Sebban", , "jean.sebban@insee.fr", role = c("cre", "aut"))
 Description: Application pour mettre en évidence de façon pédagogique des
