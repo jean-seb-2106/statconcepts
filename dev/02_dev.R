@@ -16,6 +16,7 @@
 ## Dependencies ----
 ## Amend DESCRIPTION with dependencies read from package code parsing
 attachment::att_amend_desc()
+#super
 
 ## Add modules ----
 ## Create a module infrastructure in R/
