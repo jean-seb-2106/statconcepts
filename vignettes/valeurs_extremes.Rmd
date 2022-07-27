@@ -34,5 +34,26 @@ afficher_histo1(grandile,"PATRIMOINE")
 
 # Calculer les 4 indicateurs
 
+```{r}
+#La fonction prend un dataframe et une variable au format caractère en input
+#pour renvoyer un vecteur numérique de 4 éléments
+calculer_indicateurs1 <- function(df,var){
+  moy <- mean(df[,var],na.rm=FALSE)
+  med <- median(df[,var],na.rm=FALSE)
+  sd <- sd(df[,var],na.rm=FALSE)
+  cv <- sd/moy
+  c("Moyenne"=moy,"Médiane"=med,"Ecart-type" = sd,"Coeff de variation (en %)"=cv) 
+}
+
+#Deux exemples
+calculer_indicateurs1(grandile,"PATRIMOINE") %>% 
+    round(2) %>% 
+    format(big.mark = " ",decimal.mark = ",",nsmall=2) 
+
+calculer_indicateurs1(mtcars,"mpg") %>% 
+    round(2) %>% 
+    format(big.mark = " ",decimal.mark = ",",nsmall=2) 
+
+```
 
 
