@@ -26,10 +26,13 @@ library(ggplot2)
 #Création d'une fonction qui affiche un histogramme
 #La fonction prend deux inputs au format caractère (une data et une variable) et renvoie un objet ggplot
 afficher_histo1 <- function(df,var){
-  x <- eval(parse(text=df))
-  ggplot(x) + aes(x = .data[[var]]) + geom_histogram(col="black",fill="lightblue",bins = 20) + theme_minimal()
+  ggplot(df) + aes(x = .data[[var]]) + geom_histogram(col="black",fill="lightblue",bins = 20) + theme_minimal()
 }
-afficher_histo1("mtcars","mpg")
+afficher_histo1(mtcars,"mpg")
+afficher_histo1(grandile,"PATRIMOINE")
 ```
 
 # Calculer les 4 indicateurs
+
+
+
