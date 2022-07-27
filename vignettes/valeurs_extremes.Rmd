@@ -1,0 +1,36 @@
+---
+title: "valeurs_extremes"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{valeurs_extrêmes}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(statconcepts)
+library(ggplot2)
+```
+
+# Situation initiale
+
+```{r}
+
+#Création d'une fonction qui affiche un histogramme
+#La fonction prend deux input au format caractère (une data et une variable) et renvoie un objet ggplot
+afficher_histo1 <- function(var){
+  ggplot(mtcars) + aes(x = .data[[var]]) + geom_histogram()
+}
+# afficher_histo1("mtcars","mpg")
+```
+
+
+
+# Après ajout de valeurs extrêmes
