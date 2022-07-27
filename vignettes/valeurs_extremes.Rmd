@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(statconcepts)
 library(ggplot2)
+library(dplyr)
 ```
 
 # Afficher un histogramme
@@ -41,7 +42,7 @@ calculer_indicateurs1 <- function(df,var){
   moy <- mean(df[,var],na.rm=FALSE)
   med <- median(df[,var],na.rm=FALSE)
   sd <- sd(df[,var],na.rm=FALSE)
-  cv <- sd/moy
+  cv <- sd/moy*100
   c("Moyenne"=moy,"Médiane"=med,"Ecart-type" = sd,"Coeff de variation (en %)"=cv) 
 }
 
