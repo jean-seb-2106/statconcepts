@@ -10,6 +10,8 @@
 mod_classes_ui <- function(id){
   ns <- NS(id)
 
+
+
   tabPanel("Classes 1",
 
            fluidPage(column(3,
