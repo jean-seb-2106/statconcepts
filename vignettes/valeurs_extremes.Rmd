@@ -29,8 +29,19 @@ library(dplyr)
 afficher_histo1 <- function(df,var){
   ggplot(df) + aes(x = .data[[var]]) + geom_histogram(col="black",fill="lightblue",bins = 20) + theme_minimal()
 }
+
+afficher_boxplot1 <- function(df,var){
+  ggplot(df) + 
+    aes(x = .data[[var]]) + 
+    geom_boxplot(col="black",fill="lightblue") + 
+    coord_flip()+ 
+    theme_minimal()
+}
+
 afficher_histo1(mtcars,"mpg")
+afficher_boxplot1(mtcars,"mpg")
 afficher_histo1(grandile,"PATRIMOINE")
+afficher_boxplot1(grandile,"PATRIMOINE")
 ```
 
 # Calculer les 4 indicateurs
@@ -138,6 +149,7 @@ ggplot(c) +
 b <- ajouter_valeurs_extremes(grandile,"REV_DISPONIBLE",nb=1)
 afficher_histo1(grandile,"REV_DISPONIBLE")
 afficher_histo2("REV_DISPONIBLE",b)
+afficher_boxplot1(grandile,"REV_DISPONIBLE")
 afficher_boxplot2("REV_DISPONIBLE",b)
 
 ```
