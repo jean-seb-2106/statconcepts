@@ -110,4 +110,35 @@ calculer_indicateurs1(grandile,"REV_DISPONIBLE") %>% formater_indicateurs1()
 
 # Génération de l'histogramme après ajout de valeurs extrêmes
 
+```{r}
+
+#Fonction qui génère un histogramme à partir du vecteur numérique avec les valeurs
+# extrêmes et du nom de la variable
+
+afficher_histo2 <- function(inputselect,num){
+  c <- num %>% as.data.frame()
+names(c) <- inputselect
+ggplot(c) + 
+  aes(x = .data[[inputselect]]) + 
+  geom_histogram(col="black",fill="lightgreen",bins = 20) +
+  theme_minimal()
+}
+
+afficher_boxplot2 <- function(inputselect,num){
+  c <- num %>% as.data.frame()
+names(c) <- inputselect
+ggplot(c) + 
+  aes(x = .data[[inputselect]]) + 
+  geom_boxplot(col="black",fill="lightgreen") +
+  coord_flip()+
+  theme_minimal()
+}
+
+
+b <- ajouter_valeurs_extremes(grandile,"REV_DISPONIBLE",nb=1)
+afficher_histo1(grandile,"REV_DISPONIBLE")
+afficher_histo2("REV_DISPONIBLE",b)
+afficher_boxplot2("REV_DISPONIBLE",b)
+
+```
 
