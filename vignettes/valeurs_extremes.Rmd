@@ -46,15 +46,68 @@ calculer_indicateurs1 <- function(df,var){
   c("Moyenne"=moy,"Médiane"=med,"Ecart-type" = sd,"Coeff de variation (en %)"=cv) 
 }
 
-#Deux exemples
-calculer_indicateurs1(grandile,"PATRIMOINE") %>% 
-    round(2) %>% 
-    format(big.mark = " ",decimal.mark = ",",nsmall=2) 
+formater_indicateurs1 <-function(vec){
+  vec %>% round(1) %>% format(big.mark = " ",decimal.mark = ",",nsmall=1)
+} 
 
-calculer_indicateurs1(mtcars,"mpg") %>% 
-    round(2) %>% 
-    format(big.mark = " ",decimal.mark = ",",nsmall=2) 
+calculer_indicateurs1(grandile,"PATRIMOINE")
+
+calculer_indicateurs1(mtcars,"mpg")
 
 ```
+
+# Base de données avec des valeurs extrêmes
+
+```{r}
+
+#Création d'une fonction qui prend un vecteur numérique en entrée et qui renvoie un vecteur numérique
+# avec n valeurs extrêmes en plus
+ajouter_valeurs_extremes <- function(df,num,sup=TRUE,nb){
+  a <- df[,num] #vecteur numérique
+  #Calcul des seuils supérieurs et inférieurs
+q3 <- quantile(a,0.75)
+q1 <- quantile(a,0.25)
+seuil_sup <- q3 + 1.5*(q3-q1)
+seuil_inf <- q1 - 1.5*(q3-q1)
+n <- nb #nombre de valeurs extrêmes à générer
+#génération de valeurs extrêmes supérieures et inférieures
+  if (sup){
+ 
+b <- rnorm(n,4*seuil_sup,seuil_sup)
+  }else{
+b <- rnorm(n,4*seuil_inf,abs(seuil_inf))
+  }
+
+#Nouveau vecteur après ajout de valeurs extrêmes
+return(c(a,b))
+
+}
+
+ajouter_valeurs_extremes(mtcars,"disp",nb=10)
+```
+
+# Comparaison des indicateurs avant et après ajout de valeurs extrêmes
+
+```{r}
+calculer_indicateurs2 <- function(num){
+  moy <- mean(num,na.rm=FALSE)
+  med <- median(num,na.rm=FALSE)
+  sd <- sd(num,na.rm=FALSE)
+  cv <- sd/moy*100
+  c("Moyenne"=moy,"Médiane"=med,"Ecart-type" = sd,"Coeff de variation (en %)"=cv) 
+}
+
+#Exemple avec mtcars (peu d'individus)
+a <- ajouter_valeurs_extremes(mtcars,"disp",nb=1)
+calculer_indicateurs2(a)
+calculer_indicateurs1(mtcars,"disp")
+
+#Exemple avec grandile
+b <- ajouter_valeurs_extremes(grandile,"REV_DISPONIBLE",nb=100)
+calculer_indicateurs2(b) %>% formater_indicateurs1()
+calculer_indicateurs1(grandile,"REV_DISPONIBLE") %>% formater_indicateurs1()
+```
+
+# Génération de l'histogramme après ajout de valeurs extrêmes
 
 
