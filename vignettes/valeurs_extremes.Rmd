@@ -26,12 +26,12 @@ library(dplyr)
 
 #Création d'une fonction qui affiche un histogramme
 #La fonction prend deux inputs au format caractère (une data et une variable) et renvoie un objet ggplot
-afficher_histo1 <- function(df,var){
-  ggplot(df) + 
-    aes(x = .data[[var]]) + 
-    geom_histogram(col="black",fill="lightblue",bins = 20) + 
-    theme_minimal()
-}
+# afficher_histo1 <- function(df,var){
+#   ggplot(df) + 
+#     aes(x = .data[[var]]) + 
+#     geom_histogram(col="black",fill="lightblue",bins = 20) + 
+#     theme_minimal()
+# }
 
 # afficher_boxplot1 <- function(df,var){
 #   ggplot(df) + 
@@ -52,13 +52,13 @@ afficher_boxplot1(grandile,"PATRIMOINE")
 ```{r}
 #La fonction prend un dataframe et une variable au format caractère en input
 #pour renvoyer un vecteur numérique de 4 éléments
-calculer_indicateurs1 <- function(df,var){
-  moy <- mean(df[,var],na.rm=FALSE)
-  med <- median(df[,var],na.rm=FALSE)
-  sd <- sd(df[,var],na.rm=FALSE)
-  cv <- sd/moy*100
-  c("Moyenne"=moy,"Médiane"=med,"Ecart-type" = sd,"Coeff de variation (en %)"=cv) 
-}
+# calculer_indicateurs1 <- function(df,var){
+#   moy <- mean(df[,var],na.rm=FALSE)
+#   med <- median(df[,var],na.rm=FALSE)
+#   sd <- sd(df[,var],na.rm=FALSE)
+#   cv <- sd/moy*100
+#   c("Moyenne"=moy,"Médiane"=med,"Ecart-type" = sd,"Coeff de variation (en %)"=cv) 
+# }
 
 formater_indicateurs1 <-function(vec){
   vec %>% round(1) %>% format(big.mark = " ",decimal.mark = ",",nsmall=1)
