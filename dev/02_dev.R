@@ -32,8 +32,10 @@ golem::add_module(name = "classes_biv", with_test = TRUE) # Name of the module
 golem::add_fct("afficher_boxplot1", with_test = TRUE)
 golem::add_fct("afficher_histo1", with_test = TRUE)
 golem::add_fct("calculer_indicateurs1", with_test = TRUE)
-golem::add_fct("afficher_histo1", with_test = TRUE)
-golem::add_fct("afficher_histo1", with_test = TRUE)
+golem::add_fct("ajouter_valeurs_extremes", with_test = TRUE)
+golem::add_fct("calculer_indicateurs2", with_test = TRUE)
+golem::add_fct("afficher_boxplot2", with_test = TRUE)
+golem::add_fct("afficher_histo2", with_test = TRUE)
 
 golem::add_utils("helpers", with_test = TRUE)
 
