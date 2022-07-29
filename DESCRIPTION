@@ -13,6 +13,7 @@ Imports:
     dplyr,
     ggplot2,
     golem (>= 0.3.2),
+    purrr,
     shinipsum,
     shiny (>= 1.7.1),
     stats

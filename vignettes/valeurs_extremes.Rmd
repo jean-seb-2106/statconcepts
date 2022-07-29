@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 library(statconcepts)
 library(ggplot2)
 library(dplyr)
+library(purrr)
 ```
 
 # Afficher un histogramme
@@ -155,5 +156,16 @@ afficher_histo2("REV_DISPONIBLE",b)
 afficher_boxplot1(grandile,"REV_DISPONIBLE")
 afficher_boxplot2("REV_DISPONIBLE",b)
 
+```
+
+# Pour sélectionner la liste des variables numériques d'une base de données
+
+```{r}
+
+# select_class_df <- function(df,type){
+#   names(df[, map_chr(.x = df,.f = class)==type])
+# }
+
+select_class_df(grandile,"numeric")
 ```
 
