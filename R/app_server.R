@@ -7,7 +7,7 @@
 app_server <- function(input, output, session) {
   # Your application server logic
 
-  global <- reactiveValues(dt1 = grandile)
+  global <- reactiveValues(dt1 = grandile,dt2 = mtcars)
 
   mod_valeurs_extremes_server("valeurs_extremes",global=global)
 

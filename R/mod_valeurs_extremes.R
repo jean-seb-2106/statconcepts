@@ -25,11 +25,11 @@ mod_valeurs_extremes_ui <- function(id){
 
         selectInput(ns("select1"),
                     "Choisir une base de données",
-                    choices = c("Grandile","Petitile")),
+                    choices = c("Grandile","Petitile"),selected = "Petitile"),
 
         selectInput(ns("select2"),
                     "Choisir une variable quantitative",
-                    choices = c("REVENU","PATRIMOINE")),
+                    choices = NULL),
 
         actionButton(ns("go1"),"Afficher la distribution")
 
@@ -113,6 +113,24 @@ mod_valeurs_extremes_ui <- function(id){
 mod_valeurs_extremes_server <- function(id,global){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
+
+    # df <- if (input$select1 == "Grandile"){
+    #   global$dt1
+    # } else if (input$select1=="Petitile"){
+    #   global$dt2
+    # }
+
+    # local <- reactiveValues(dt=df)
+
+    # observeEvent(input$select1,{
+    #   updateSelectInput(
+    #     session = session,
+    #     inputId = "select2",
+    #     choices = select_class_df(local$dt,"numeric")
+    #   )
+    # }
+    # )
+
 
 output$plot1 <- renderPlot(
   shinipsum::random_ggplot()
