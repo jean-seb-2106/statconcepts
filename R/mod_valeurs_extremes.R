@@ -110,7 +110,7 @@ mod_valeurs_extremes_ui <- function(id){
 #' valeurs_extremes Server Functions
 #'
 #' @noRd
-mod_valeurs_extremes_server <- function(id){
+mod_valeurs_extremes_server <- function(id,global){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
