@@ -27,16 +27,19 @@ library(dplyr)
 #Création d'une fonction qui affiche un histogramme
 #La fonction prend deux inputs au format caractère (une data et une variable) et renvoie un objet ggplot
 afficher_histo1 <- function(df,var){
-  ggplot(df) + aes(x = .data[[var]]) + geom_histogram(col="black",fill="lightblue",bins = 20) + theme_minimal()
-}
-
-afficher_boxplot1 <- function(df,var){
   ggplot(df) + 
     aes(x = .data[[var]]) + 
-    geom_boxplot(col="black",fill="lightblue") + 
-    coord_flip()+ 
+    geom_histogram(col="black",fill="lightblue",bins = 20) + 
     theme_minimal()
 }
+
+# afficher_boxplot1 <- function(df,var){
+#   ggplot(df) + 
+#     aes(x = .data[[var]]) + 
+#     geom_boxplot(col="black",fill="lightblue") + 
+#     coord_flip()+ 
+#     theme_minimal()
+# }
 
 afficher_histo1(mtcars,"mpg")
 afficher_boxplot1(mtcars,"mpg")
