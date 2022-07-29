@@ -16,5 +16,6 @@ a vecteur de character
 Une fonction qui formate les éléments d'un vecteur numérique
 }
 \examples{
-calculer_indicateurs1(mtcars,"mpg") \%>\% formater_indicateurs1()
+a <- calculer_indicateurs1(mtcars,"mpg")
+formater_indicateurs1(a)
 }
