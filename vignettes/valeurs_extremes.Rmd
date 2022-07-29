@@ -60,9 +60,9 @@ afficher_boxplot1(grandile,"PATRIMOINE")
 #   c("Moyenne"=moy,"Médiane"=med,"Ecart-type" = sd,"Coeff de variation (en %)"=cv) 
 # }
 
-formater_indicateurs1 <-function(vec){
-  vec %>% round(1) %>% format(big.mark = " ",decimal.mark = ",",nsmall=1)
-} 
+# formater_indicateurs1 <-function(vec){
+#   vec %>% round(1) %>% format(big.mark = " ",decimal.mark = ",",nsmall=1)
+# } 
 
 calculer_indicateurs1(grandile,"PATRIMOINE")
 

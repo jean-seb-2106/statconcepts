@@ -36,6 +36,7 @@ golem::add_fct("ajouter_valeurs_extremes", with_test = TRUE)
 golem::add_fct("calculer_indicateurs2", with_test = TRUE)
 golem::add_fct("afficher_boxplot2", with_test = TRUE)
 golem::add_fct("afficher_histo2", with_test = TRUE)
+golem::add_fct("formater_indicateurs1", with_test = TRUE)
 
 golem::add_utils("helpers", with_test = TRUE)
 
