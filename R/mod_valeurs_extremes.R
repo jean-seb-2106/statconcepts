@@ -49,9 +49,15 @@ mod_valeurs_extremes_ui <- function(id){
 
       column(3,
 
-             fluidRow(wellPanel(h3("Moyenne"),verbatimTextOutput(ns("text1")))),
-             fluidRow(wellPanel(h3("Médiane"),verbatimTextOutput(ns("text2")))),
-             fluidRow(wellPanel(h3("Ecart-Type"),verbatimTextOutput(ns("text3"))))
+             fluidRow(column(6,wellPanel(h3("Moyenne"),verbatimTextOutput(ns("text1")))),column(6,wellPanel(h3("Médiane"),verbatimTextOutput(ns("text2"))))),
+             fluidRow(column(6,wellPanel(h3("Ecart-Type"),verbatimTextOutput(ns("text3")))),column(6,wellPanel(h3("Coeff variation"),verbatimTextOutput(ns("text4")))))
+
+
+
+             # fluidRow(wellPanel(h2("Moyenne"),verbatimTextOutput(ns("text1")))),
+             # fluidRow(wellPanel(h2("Médiane"),verbatimTextOutput(ns("text2")))),
+             # fluidRow(wellPanel(h2("Ecart-Type"),verbatimTextOutput(ns("text3")))),
+             # fluidRow(wellPanel(h2("Ecart-Type"),verbatimTextOutput(ns("text4"))))
 
 
              )
@@ -94,9 +100,15 @@ mod_valeurs_extremes_ui <- function(id){
         column(3,
 
 
-               fluidRow(wellPanel(h3("Moyenne"),verbatimTextOutput(ns("text4")))),
-               fluidRow(wellPanel(h3("Médiane"),verbatimTextOutput(ns("text5")))),
-               fluidRow(wellPanel(h3("Ecart-Type"),verbatimTextOutput(ns("text6"))))
+               fluidRow(column(6,wellPanel(h3("Moyenne"),verbatimTextOutput(ns("text5")))),column(6,wellPanel(h3("Médiane"),verbatimTextOutput(ns("text6"))))),
+               fluidRow(column(6,wellPanel(h3("Ecart-Type"),verbatimTextOutput(ns("text7")))),column(6,wellPanel(h3("Coeff variation"),verbatimTextOutput(ns("text8")))))
+
+
+#
+#                fluidRow(wellPanel(h2("Moyenne"),verbatimTextOutput(ns("text5")))),
+#                fluidRow(wellPanel(h2("Médiane"),verbatimTextOutput(ns("text6")))),
+#                fluidRow(wellPanel(h2("Ecart-Type"),verbatimTextOutput(ns("text7")))),
+#                fluidRow(wellPanel(h2("Coeff variation"),verbatimTextOutput(ns("text8"))))
 
 
                )
@@ -169,8 +181,10 @@ output$plot1 <- renderPlot({
     }
 })
 
-output$text1 <- renderPrint(
-  shinipsum::random_print()
+output$text1 <- renderText({
+  req(local2$dt)
+  calculer_indicateurs1(df = local2$dt,var = local2$var)["Moyenne"] %>% formater_indicateurs1()
+}
 )
 
 output$plot2 <- renderPlot(
@@ -194,6 +208,14 @@ output$text5 <- renderText(
 )
 
 output$text6 <- renderText(
+  shinipsum::random_text(nchars = 10)
+)
+
+output$text7 <- renderText(
+  shinipsum::random_text(nchars = 10)
+)
+
+output$text8 <- renderText(
   shinipsum::random_text(nchars = 10)
 )
 
