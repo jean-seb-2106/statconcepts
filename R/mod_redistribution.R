@@ -14,7 +14,7 @@ mod_redistribution_ui <- function(id){
 
            fluidPage(column(3,
 
-                            fluidRow(h3("Situation initiale"),wellPanel(
+                            fluidRow(h2("Situation initiale"),wellPanel(
 
 
                               selectInput(ns("select1"),
@@ -29,7 +29,7 @@ mod_redistribution_ui <- function(id){
 
 
 
-                            ),h3("Redistribution"),wellPanel(
+                            ),h2("Redistribution"),wellPanel(
 
                               selectInput(ns("select3"),
                                                                          "Choisir une redistribution",

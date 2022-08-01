@@ -1,0 +1,38 @@
+:root {
+  --light-cornflower-blue: #8ecae6ff;
+  --blue-green: #219ebcff;
+  --insee-blue: #3467AEff;
+  --insee-yellow: #FFC400ff;
+  --orange: #fb8500ff;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-style: bold;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--insee-blue);
+  background-color: var(--insee-yellow);
+}
+
+h3 {
+
+  font-style: bold;
+  color: var(--insee-yellow);
+}
+
+h4 {
+  text-transform: uppercase;
+  font-style: bold;
+  color: var(--insee-yellow);
+}
+
+.well {
+  padding: 1em;
+  margin: 1em;
+  background-color: var(--insee-blue);
+}
+
+.control-label {
+  color: var(--insee-yellow);
+}
+

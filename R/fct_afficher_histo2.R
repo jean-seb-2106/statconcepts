@@ -15,6 +15,6 @@ afficher_histo2 <- function(inputselect,num){
   names(c) <- inputselect
   ggplot(c) +
     aes(x = .data[[inputselect]]) +
-    geom_histogram(col="black",fill="lightgreen",bins = 20) +
+    geom_histogram(col="black",fill="#3467AEff",bins = 20) +
     theme_minimal()
 }

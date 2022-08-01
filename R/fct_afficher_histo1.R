@@ -11,6 +11,6 @@
 afficher_histo1 <- function(df,var){
   ggplot(df) +
     aes(x = .data[[var]]) +
-    geom_histogram(col="black",fill="lightblue",bins = 20) +
+    geom_histogram(col="black",fill="#FFC400ff",bins = 20) +
     theme_minimal()
 }

@@ -11,7 +11,7 @@
 afficher_boxplot1 <- function(df,var){
   ggplot(df) +
     aes(x = .data[[var]]) +
-    geom_boxplot(col="black",fill="lightblue") +
+    geom_boxplot(col="black",fill="#FFC400ff") +
     coord_flip()+
     theme_minimal()
 }

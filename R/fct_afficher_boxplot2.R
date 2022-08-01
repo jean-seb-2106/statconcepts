@@ -15,7 +15,7 @@ afficher_boxplot2 <- function(inputselect,num){
   names(c) <- inputselect
   ggplot(c) +
     aes(x = .data[[inputselect]]) +
-    geom_boxplot(col="black",fill="lightgreen") +
+    geom_boxplot(col="black",fill="#3467AEff") +
     coord_flip()+
     theme_minimal()
 }
