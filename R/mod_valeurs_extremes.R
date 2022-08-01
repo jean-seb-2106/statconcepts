@@ -25,19 +25,26 @@ mod_valeurs_extremes_ui <- function(id){
 
         selectInput(ns("select1"),
                     "Choisir une base de données",
-                    choices = c("Grandile","Petitile"),selected = "Petitile"),
+                    # choices = NULL),
+                    choices = c("Grandile","mtcars"),selected = NULL),
+
+        actionButton(ns("go1"),"Mettre à jour"),
+
+        br(),
+        br(),
 
         selectInput(ns("select2"),
                     "Choisir une variable quantitative",
                     choices = NULL),
+        selectInput(ns("select3"),"Choisir un graphique",choices = NULL),
 
-        actionButton(ns("go1"),"Afficher la distribution")
+        actionButton(ns("go2"),"Afficher la distribution")
 
 
       )),
 
 
-      column(5,wellPanel(h3("Histogramme 1"),plotOutput(ns("plot1")))),
+      column(5,wellPanel(h3("Distribution 1"),plotOutput(ns("plot1")))),
 
 
       column(3,
@@ -80,7 +87,7 @@ mod_valeurs_extremes_ui <- function(id){
                       ),
 
 
-        column(5,wellPanel(h3("Histogramme 2"),plotOutput(ns("plot2")))),
+        column(5,wellPanel(h3("Distribution 2"),plotOutput(ns("plot2")))),
 
 
 
@@ -114,27 +121,53 @@ mod_valeurs_extremes_server <- function(id,global){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
-    # df <- if (input$select1 == "Grandile"){
-    #   global$dt1
-    # } else if (input$select1=="Petitile"){
-    #   global$dt2
-    # }
-
-    # local <- reactiveValues(dt=df)
-
-    # observeEvent(input$select1,{
-    #   updateSelectInput(
-    #     session = session,
-    #     inputId = "select2",
-    #     choices = select_class_df(local$dt,"numeric")
-    #   )
-    # }
-    # )
+#
+      local <- reactiveValues(dt = NULL)
+      local2 <- reactiveValues(dt=NULL,var=NULL,graph=NULL)
 
 
-output$plot1 <- renderPlot(
-  shinipsum::random_ggplot()
-)
+      #Bouton qui selectionne les variables quantitatives
+      observeEvent(input$go1,{
+
+        local$dt <- if (input$select1 == "Grandile"){
+          global$dt1
+        } else if (input$select1=="mtcars"){
+          global$dt2
+        }
+        updateSelectInput(
+          session = session,
+          inputId = "select2",
+          choices = select_class_df(local$dt,"numeric")
+        )
+
+        updateSelectInput(
+          session = session,
+          inputId = "select3",
+          choices = c("Histogramme","Box-Plot")
+        )
+      }
+      )
+
+
+      observeEvent(input$go2,{
+
+        local2$dt <- local$dt
+        local2$var <- input$select2
+        local2$graph <- input$select3
+
+      }
+      )
+
+output$plot1 <- renderPlot({
+  # shinipsum::random_ggplot()
+  validate(need(expr = !is.null(local2$dt),
+                               message = "Choisir une variable et un type de graphique et cliquer pour afficher la distribution"))
+  if (local2$graph=="Histogramme"){
+  afficher_histo1(local2$dt,local2$var)
+  }else{
+      afficher_boxplot1(local2$dt,local2$var)
+    }
+})
 
 output$text1 <- renderPrint(
   shinipsum::random_print()
