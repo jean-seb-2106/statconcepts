@@ -6,6 +6,14 @@
   --orange: #fb8500ff;
 }
 
+h1 {
+  text-transform: uppercase;
+  font-style: bold;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--insee-blue);
+  text-align: center;
+}
+
 h2 {
   text-transform: uppercase;
   font-style: bold;
@@ -18,6 +26,7 @@ h3 {
 
   font-style: bold;
   color: var(--insee-yellow);
+  font-family: 'Montserrat', sans-serif;
 }
 
 h4 {
@@ -25,6 +34,7 @@ h4 {
   font-style: bold;
   color: var(--insee-yellow);
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .well {
