@@ -47,10 +47,10 @@ mod_valeurs_extremes_ui <- function(id){
       column(5,wellPanel(h3("Distribution 1"),plotOutput(ns("plot1")))),
 
 
-      column(3,
+      column(4,
 
-             fluidRow(column(6,wellPanel(h3("Moyenne"),verbatimTextOutput(ns("text1")))),column(6,wellPanel(h3("Médiane"),verbatimTextOutput(ns("text2"))))),
-             fluidRow(column(6,wellPanel(h3("Ecart-Type"),verbatimTextOutput(ns("text3")))),column(6,wellPanel(h3("Coeff variation"),verbatimTextOutput(ns("text4")))))
+             fluidRow(column(6,wellPanel(h4("Moyenne"),verbatimTextOutput(ns("text1")))),column(6,wellPanel(h4("Médiane"),verbatimTextOutput(ns("text2"))))),
+             fluidRow(column(6,wellPanel(h4("Ecart-Type"),verbatimTextOutput(ns("text3")))),column(6,wellPanel(h4("Coeff variation (en %)"),verbatimTextOutput(ns("text4")))))
 
 
 
@@ -82,7 +82,7 @@ mod_valeurs_extremes_ui <- function(id){
                                             max = 100,
                                             value = 1),
                         actionButton(
-                                  ns("go1"),
+                                  ns("go3"),
                                   "Ajouter des valeurs extrêmes")
 
 
@@ -97,11 +97,11 @@ mod_valeurs_extremes_ui <- function(id){
 
 
 
-        column(3,
+        column(4,
 
 
-               fluidRow(column(6,wellPanel(h3("Moyenne"),verbatimTextOutput(ns("text5")))),column(6,wellPanel(h3("Médiane"),verbatimTextOutput(ns("text6"))))),
-               fluidRow(column(6,wellPanel(h3("Ecart-Type"),verbatimTextOutput(ns("text7")))),column(6,wellPanel(h3("Coeff variation"),verbatimTextOutput(ns("text8")))))
+               fluidRow(column(6,wellPanel(h4("Moyenne"),verbatimTextOutput(ns("text5")))),column(6,wellPanel(h4("Médiane"),verbatimTextOutput(ns("text6"))))),
+               fluidRow(column(6,wellPanel(h4("Ecart-Type"),verbatimTextOutput(ns("text7")))),column(6,wellPanel(h4("Coeff variation (en %)"),verbatimTextOutput(ns("text8")))))
 
 
 #
@@ -187,36 +187,88 @@ output$text1 <- renderText({
 }
 )
 
-output$plot2 <- renderPlot(
-  shinipsum::random_ggplot()
-)
 
-output$text2 <- renderText(
-  shinipsum::random_text(nchars = 10)
+
+output$text2 <- renderText({
+  req(local2$dt)
+  calculer_indicateurs1(df = local2$dt,var = local2$var)["Médiane"] %>% formater_indicateurs1()
+}
 )
 
 output$text3 <- renderText(
-  shinipsum::random_text(nchars = 10)
+  {
+    req(local2$dt)
+    calculer_indicateurs1(df = local2$dt,var = local2$var)["Ecart-type"] %>% formater_indicateurs1()
+  }
+  # shinipsum::random_text(nchars = 10)
 )
 
 output$text4 <- renderText(
-  shinipsum::random_text(nchars = 10)
+  {
+    req(local2$dt)
+    calculer_indicateurs1(df = local2$dt,var = local2$var)["Coeff de variation (en %)"] %>% formater_indicateurs1()
+  }
+  # shinipsum::random_text(nchars = 10)
+)
+
+
+#Partie avec les valeurs extrêmes
+
+local3 <- reactiveValues(num = NULL,nb = NULL,var=NULL)
+
+observeEvent(input$go3,{
+
+  local3$nb <- input$slide1
+  local3$var <- local2$var
+  local3$num <- ajouter_valeurs_extremes(df = local2$dt,num = local3$var,nb = local3$nb)
+
+
+})
+
+output$plot2 <- renderPlot({
+  validate(need(expr = !is.null(local3$nb),
+                message = "Choisir une variable et un type de graphique et cliquer pour afficher la distribution"))
+  # shinipsum::random_ggplot()
+
+  if (local2$graph=="Histogramme"){
+    afficher_histo2(inputselect = local3$var,num = local3$num)
+  }else{
+    afficher_boxplot2(inputselect = local3$var,num = local3$num)
+  }
+
+
+}
 )
 
 output$text5 <- renderText(
-  shinipsum::random_text(nchars = 10)
+  {
+    req(local3$nb)
+    calculer_indicateurs2(num = local3$num)["Moyenne"] %>% formater_indicateurs1()
+  }
+  # shinipsum::random_text(nchars = 10)
 )
 
 output$text6 <- renderText(
-  shinipsum::random_text(nchars = 10)
+  {
+    req(local3$nb)
+    calculer_indicateurs2(num = local3$num)["Médiane"] %>% formater_indicateurs1()
+  }
+  # shinipsum::random_text(nchars = 10)
 )
 
-output$text7 <- renderText(
-  shinipsum::random_text(nchars = 10)
+output$text7 <- renderText({
+  req(local3$nb)
+  calculer_indicateurs2(num = local3$num)["Ecart-type"] %>% formater_indicateurs1()
+}
+  # shinipsum::random_text(nchars = 10)
 )
 
-output$text8 <- renderText(
-  shinipsum::random_text(nchars = 10)
+output$text8 <- renderText({
+  req(local3$nb)
+  calculer_indicateurs2(num = local3$num)["Coeff de variation (en %)"] %>% formater_indicateurs1()
+}
+
+  # shinipsum::random_text(nchars = 10)
 )
 
   })
