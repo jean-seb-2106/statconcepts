@@ -54,12 +54,6 @@ mod_valeurs_extremes_ui <- function(id){
 
 
 
-             # fluidRow(wellPanel(h2("Moyenne"),verbatimTextOutput(ns("text1")))),
-             # fluidRow(wellPanel(h2("Médiane"),verbatimTextOutput(ns("text2")))),
-             # fluidRow(wellPanel(h2("Ecart-Type"),verbatimTextOutput(ns("text3")))),
-             # fluidRow(wellPanel(h2("Ecart-Type"),verbatimTextOutput(ns("text4"))))
-
-
              )
 
 
@@ -103,12 +97,6 @@ mod_valeurs_extremes_ui <- function(id){
                fluidRow(column(6,wellPanel(h4("Moyenne"),verbatimTextOutput(ns("text5")))),column(6,wellPanel(h4("Médiane"),verbatimTextOutput(ns("text6"))))),
                fluidRow(column(6,wellPanel(h4("Ecart-Type"),verbatimTextOutput(ns("text7")))),column(6,wellPanel(h4("Coeff variation (en %)"),verbatimTextOutput(ns("text8")))))
 
-
-#
-#                fluidRow(wellPanel(h2("Moyenne"),verbatimTextOutput(ns("text5")))),
-#                fluidRow(wellPanel(h2("Médiane"),verbatimTextOutput(ns("text6")))),
-#                fluidRow(wellPanel(h2("Ecart-Type"),verbatimTextOutput(ns("text7")))),
-#                fluidRow(wellPanel(h2("Coeff variation"),verbatimTextOutput(ns("text8"))))
 
 
                )
