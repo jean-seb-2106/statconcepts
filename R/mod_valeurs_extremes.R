@@ -135,7 +135,7 @@ mod_valeurs_extremes_server <- function(id,global){
 
 #
       local <- reactiveValues(dt = NULL)
-      local2 <- reactiveValues(dt=NULL,var=NULL,graph=NULL)
+
 
 
       #Bouton qui selectionne les variables quantitatives
@@ -160,6 +160,7 @@ mod_valeurs_extremes_server <- function(id,global){
       }
       )
 
+      local2 <- reactiveValues(dt=NULL,var=NULL,graph=NULL)
 
       observeEvent(input$go2,{
 
