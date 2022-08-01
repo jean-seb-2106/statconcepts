@@ -24,6 +24,7 @@ h4 {
   text-transform: uppercase;
   font-style: bold;
   color: var(--insee-yellow);
+  text-align: center;
 }
 
 .well {
@@ -35,4 +36,13 @@ h4 {
 .control-label {
   color: var(--insee-yellow);
 }
+
+pre {
+  font-size: 24px;
+  background-color: var(--insee-blue);
+  color: var(--insee-yellow);
+  text-align: center;
+}
+
+
 

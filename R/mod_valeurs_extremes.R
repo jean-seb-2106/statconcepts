@@ -78,7 +78,7 @@ mod_valeurs_extremes_ui <- function(id){
 
                         sliderInput(ns("slide1"),
                                             label = "Nombre de valeurs extrêmes",
-                                            min = 1,
+                                            min = 0,
                                             max = 100,
                                             value = 1),
                         actionButton(
