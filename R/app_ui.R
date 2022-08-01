@@ -12,11 +12,30 @@ app_ui <- function(request) {
     # Your application UI logic
     fluidPage(
 
-      h1("Les concepts en statistique"),
+      h1(
+
+        tags$img(
+        src = 'www/logo_cefil.jpg',
+        title = "CEFIL",
+        height = '95'
+      ),
+      "Les concepts en statistique",
+
+      tags$img(
+        src = 'www/logo_cefil.jpg',
+        title = "CEFIL",
+        height = '95'
+      )
+
+      ),
+
+
 
       navbarPage(
 
-          "Concepts stats",
+          "Sommaire",
+
+
 
 
                 mod_valeurs_extremes_ui("valeurs_extremes"),
@@ -28,6 +47,8 @@ app_ui <- function(request) {
                 mod_classes_ui("classes"),
 
                 mod_classes_biv_ui("classes_biv")
+
+
 
                  )
 
