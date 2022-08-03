@@ -1,62 +1,13 @@
 :root {
-  --light-cornflower-blue: #8ecae6ff;
-  --blue-green: #219ebcff;
   --insee-blue: #3467AEff;
   --insee-yellow: #FFC400ff;
-  --orange: #fb8500ff;
 }
 
-h1 {
-  text-transform: uppercase;
-  font-style: bold;
-  font-family: 'Montserrat', sans-serif;
-  color: var(--insee-blue);
-  text-align: center;
-}
-
-h2 {
-  text-transform: uppercase;
-  font-style: bold;
-  font-family: 'Montserrat', sans-serif;
-  color: var(--insee-blue);
-  background-color: var(--insee-yellow);
-  border: solid;
-  border-radius: 15px;
-  text-align: center;
-}
-
-h3 {
-
-  font-style: bold;
-  color: var(--insee-yellow);
-  font-family: 'Montserrat', sans-serif;
-}
-
-h4 {
-  text-transform: uppercase;
-  font-style: bold;
-  color: var(--insee-yellow);
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.well {
-  padding: 1em;
-  margin: 1em;
-  background-color: var(--insee-blue);
-  border: solid;
-  border-radius: 25px;
-}
-
-.control-label {
-  color: var(--insee-yellow);
-}
-
+/*Les box avec les indicateurs de tendance centrale et de dispersion*/
 pre {
-  font-size: 24px;
-  background-color: var(--insee-blue);
-  color: var(--insee-yellow);
+  font-size: 20px;
   text-align: center;
+  border-style: dashed;
 }
 
 ul {
@@ -64,4 +15,29 @@ ul {
   text-align: center;
 }
 
+.well {
+  padding: 1em;
+  margin: 1em;
+  border-radius: 15px;
+}
 
+h1 {
+  text-transform: uppercase;
+  font-style: bold;
+}
+
+h2 {
+  font-style: bold;
+  text-decoration: underline;
+  text-align: left;
+}
+
+h3 {
+  font-style: bold;
+}
+
+h4 {
+  text-transform: uppercase;
+  text-align: center;
+  font-style: bold;
+}

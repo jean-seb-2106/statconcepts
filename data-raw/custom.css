@@ -1,0 +1,66 @@
+:root {
+  --light-cornflower-blue: #8ecae6ff;
+  --blue-green: #219ebcff;
+  --insee-blue: #3467AEff;
+  --insee-yellow: #FFC400ff;
+  --orange: #fb8500ff;
+}
+
+h1 {
+  text-transform: uppercase;
+  font-style: bold;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--insee-blue);
+  text-align: center;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-style: bold;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--insee-blue);
+  border: solid;
+  border-radius: 15px;
+  text-align: center;
+}
+
+h3 {
+
+  font-style: bold;
+  color: var(--insee-yellow);
+  font-family: 'Montserrat', sans-serif;
+}
+
+h4 {
+  text-transform: uppercase;
+  font-style: bold;
+  color: var(--insee-yellow);
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.well {
+  padding: 1em;
+  margin: 1em;
+  background-color: var(--insee-blue);
+  border: solid;
+  border-radius: 25px;
+}
+
+.control-label {
+  color: var(--insee-yellow);
+}
+
+pre {
+  font-size: 24px;
+  background-color: var(--insee-blue);
+  color: var(--insee-yellow);
+  text-align: center;
+}
+
+ul {
+  font-size: 14px;
+  text-align: center;
+}
+
+

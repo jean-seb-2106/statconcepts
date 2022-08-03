@@ -19,13 +19,7 @@ app_ui <- function(request) {
         title = "CEFIL",
         height = '95'
       ),
-      "Les concepts en statistique",
-
-      tags$img(
-        src = 'www/logo_cefil.jpg',
-        title = "CEFIL",
-        height = '95'
-      )
+      "Les concepts en statistique"
 
       ),
 
