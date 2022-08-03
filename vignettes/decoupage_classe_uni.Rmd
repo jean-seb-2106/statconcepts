@@ -1,0 +1,19 @@
+---
+title: "decoupage_classe_uni"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{decoupage_classe_uni}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(statconcepts)
+```
