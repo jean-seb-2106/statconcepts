@@ -19,34 +19,40 @@ library(statconcepts)
 library(ggplot2)
 library(dplyr)
 library(kableExtra)
+library(scales)
+jaune_insee <- "#FFC400ff"
+bleu_insee <- "#3467AEff"
 ```
 
 ```{r}
 
 #Création d'une fonction qui renvoie un vecteur avec les bornes de classe
-calculer_bornes <- function(num,nbclass,type_decoup){
+calculer_bornes <- function(df,num,nbclass,type_decoup){
+  x <- df[,num]
   if (type_decoup == "largeur_fixe"){
-    max <- max(num)
-    min <- min(num)
+    max <- max(x)
+    min <- min(x)
     largeur <- (max-min)/nbclass #largeur de chaque tranche
     bornes <- seq(min,max,largeur) #vecteur numérique avec les bornes
   }else if (type_decoup == "quantiles"){
     vect_quantiles <- seq(0,1,1/nbclass)
-    bornes <- quantile(num,vect_quantiles)
+    bornes <- quantile(x,vect_quantiles)
   }
   return(bornes)
 }
 
 #Exemple avec grandile
-x <- grandile$REV_DISPONIBLE
+df <- grandile
+x <- "PATRIMOINE"
 y <- 5
-z <- "largeur_fixe"
-calculer_bornes(x,y,z)
+z <- "quantiles"
+calculer_bornes(df,x,y,z)
 
 ```
 ```{r}
 # A partir du vecteur numérique avec les bornes de classe, on récupère un tableau avec les classes
 tabuler_bornes <- function(num,nbclass,type_decoup){
+
 if (type_decoup == "largeur_fixe") {
       tab <- data.frame(cbind(
         seq(1, nbclass,1),
@@ -65,30 +71,38 @@ if (type_decoup == "largeur_fixe") {
   return(tab)
 }
 
-x <- grandile$REV_DISPONIBLE
+df <- grandile
+x <- "REV_DISPONIBLE"
 y <- 5
 z <- "quantiles"
-a <- calculer_bornes(x,y,z)
+a <- calculer_bornes(df,x,y,z)
 b <- tabuler_bornes(a,y,z)
 
 #Fonction qui formatte un data.frame à partir de la deuxième colonne
 
-kbl(b,digits = c(2,0,0),format = "html")
+kbl(b,digits = c(2,0,0),format = "html",align = "c")
 ```
 
 ```{r}
 #Afficher un histogramme à partir du vecteur numérique des classes
-data(grandile)
-x <- grandile$REV_DISPONIBLE
-y <- 5 #nombre de tranches
+
+afficher_histo3 <- function(df,varnum,nbclass,type_decoup,breaknum){
+  a <- dput(breaknum)
+ggplot(df)+
+  aes(.data[[varnum]])+
+  geom_histogram(aes(y = ..density..),breaks=a,color=jaune_insee,fill=bleu_insee)+
+  theme_minimal()+
+  xlab(varnum)+
+  scale_x_continuous(labels = scales::label_number_auto())
+}
+
+df <- grandile
+x <- "PATRIMOINE"
+y <- 20
 z <- "largeur_fixe"
-zbis <- "quantiles"
-a <- calculer_bornes(x,y,z)
-abis <- calculer_bornes(x,y,zbis)
-names(abis) <- NULL
-dput(a)
-dput(abis)
-ggplot(grandile)+aes(REV_DISPONIBLE)+geom_histogram(bins=y,breaks=dput(a))
+a <- calculer_bornes(df,x,y,z)
+afficher_histo3(df,x,y,z,a)
+
 ```
 
 
