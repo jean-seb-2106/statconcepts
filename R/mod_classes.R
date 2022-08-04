@@ -106,12 +106,16 @@ mod_classes_server <- function(id,global){
     )
 
     output$plot1 <- renderPlot({
+      validate(need(expr = !is.null(local2$dt),
+                    message = "Choisir une variable et un type de découpage en classe pour afficher la distribution"))
       # shinipsum::random_ggplot()
       afficher_histo3(df = local2$dt,varnum = local2$var,nbclass = local2$nbclasses,type_decoup = local2$type_class,breaknum = local2$classes)
     }
     )
 
     output$tab1 <- renderTable({
+      validate(need(expr = !is.null(local2$dt),
+                    message = "Choisir une variable et un type de découpage en classe pour afficher la distribution"))
       tabuler_bornes(num = local2$classes,nbclass = local2$nbclasses,type_decoup = local2$type_class)
       # shinipsum::random_table(nrow = 20,ncol = 2)
     }
