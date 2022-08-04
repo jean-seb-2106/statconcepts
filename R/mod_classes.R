@@ -20,16 +20,20 @@ mod_classes_ui <- function(id){
 
                               selectInput(ns("select1"),
                                           "Choisir une base de données",
-                                          choices = c("Grandile","Petitile")),
+                                          choices = c("Grandile","mtcars")),
 
+                              actionButton(ns("go1"),"Mettre à jour"),
+
+                              br(),
+                              br(),
 
                               selectInput(ns("select2"),
                                           "Caractère quantitatif",
-                                          choices = c("REVENU","PATRIMOINE")),
+                                          choices = NULL),
 
                               selectInput(ns("select3"),
                                           "Type de découpage en tranche",
-                                          choices = c("Largeur fixe","Quantiles")),
+                                          choices = NULL),
 
                               sliderInput(
                                 inputId = ns("slide1"),
@@ -39,7 +43,7 @@ mod_classes_ui <- function(id){
                                 value = 4
                               ),
 
-                              actionButton(ns("go1"),"Afficher le graphique")
+                              actionButton(ns("go2"),"Afficher le graphique")
 
 
 
@@ -58,19 +62,61 @@ mod_classes_ui <- function(id){
 #' classes Server Functions
 #'
 #' @noRd
-mod_classes_server <- function(id){
+mod_classes_server <- function(id,global){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
+    local <- reactiveValues(dt = NULL)
 
-    output$tab1 <- renderTable(
+
+
+    #Bouton qui selectionne les variables quantitatives
+    observeEvent(input$go1,{
+
+      local$dt <- if (input$select1 == "Grandile"){
+        global$dt1
+      } else if (input$select1=="mtcars"){
+        global$dt2
+      }
+      updateSelectInput(
+        session = session,
+        inputId = "select2",
+        choices = select_class_df(local$dt,"numeric")
+      )
+
+      updateSelectInput(
+        session = session,
+        inputId = "select3",
+        choices = c("Largeur fixe"="largeur_fixe","Quantiles"="quantiles")
+      )
+    }
+    )
+
+    local2 <- reactiveValues(dt=NULL,var=NULL,type_class=NULL,nbclasses=NULL)
+
+    observeEvent(input$go2,{
+
+      local2$dt <- local$dt
+      local2$var <- input$select2
+      local2$type_class <- input$select3
+      local2$nbclasses <- input$slide1
+      local2$classes <- calculer_bornes(df = local2$dt,num = local2$var,nbclass = local2$nbclasses,type_decoup = local2$type_class)
+
+    }
+    )
+
+    output$plot1 <- renderPlot({
+      # shinipsum::random_ggplot()
+      afficher_histo3(df = local2$dt,varnum = local2$var,nbclass = local2$nbclasses,type_decoup = local2$type_class,breaknum = local2$classes)
+    }
+    )
+
+    output$tab1 <- renderTable({
       shinipsum::random_table(nrow = 20,ncol = 2)
+    }
     )
 
-    output$plot1 <- renderPlot(
 
-      shinipsum::random_ggplot()
-    )
 
 
 

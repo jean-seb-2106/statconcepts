@@ -7,7 +7,7 @@
 app_server <- function(input, output, session) {
   # Your application server logic
 
-  global <- reactiveValues(dt1 = grandile,dt2 = mtcars)
+  global <- reactiveValues(dt1 = grandile,dt2 = mtcars,dt3=dplyr::starwars)
 
   mod_valeurs_extremes_server("valeurs_extremes",global=global)
 
@@ -15,7 +15,7 @@ app_server <- function(input, output, session) {
 
   mod_redistribution_server("redistribution")
 
-  mod_classes_server("classes") #classe univariée
+  mod_classes_server("classes",global=global) #classe univariée
 
   mod_classes_biv_server("classes_biv")
 
