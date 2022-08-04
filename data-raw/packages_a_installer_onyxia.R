@@ -5,4 +5,4 @@ install.packages("shinipsum")
 install.packages("attachment")
 install.packages("dockerfiler") #pour créer le premier fichier dockerFile
 install.packages("roxygen2") #pour mettre à jour le package roxygen2 sur onyxia
-
+install.packages("kableExtra")

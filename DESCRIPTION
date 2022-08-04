@@ -14,10 +14,12 @@ Imports:
     ggplot2,
     golem (>= 0.3.2),
     purrr,
+    scales,
     shinipsum,
     shiny (>= 1.7.1),
     stats
 Suggests: 
+    kableExtra,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)

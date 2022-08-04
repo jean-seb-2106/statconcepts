@@ -38,6 +38,9 @@ golem::add_fct("afficher_boxplot2", with_test = TRUE)
 golem::add_fct("afficher_histo2", with_test = TRUE)
 golem::add_fct("formater_indicateurs1", with_test = TRUE)
 golem::add_fct("select_class_df", with_test = TRUE)
+golem::add_fct("calculer_bornes", with_test = TRUE)
+golem::add_fct("tabuler_bornes", with_test = TRUE)
+golem::add_fct("afficher_histo3", with_test = TRUE)
 
 
 golem::add_utils("helpers", with_test = TRUE)
