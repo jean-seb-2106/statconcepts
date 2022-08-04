@@ -112,7 +112,8 @@ mod_classes_server <- function(id,global){
     )
 
     output$tab1 <- renderTable({
-      shinipsum::random_table(nrow = 20,ncol = 2)
+      tabuler_bornes(num = local2$classes,nbclass = local2$nbclasses,type_decoup = local2$type_class)
+      # shinipsum::random_table(nrow = 20,ncol = 2)
     }
     )
 
