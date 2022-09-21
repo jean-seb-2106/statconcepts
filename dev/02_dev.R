@@ -65,6 +65,7 @@ usethis::use_test("app")
 ## Vignette ----
 usethis::use_vignette("valeurs_extrêmes")
 usethis::use_vignette("decoupage_classe_uni")
+usethis::use_vignette("redistribution")
 devtools::build_vignettes()
 
 ## Code Coverage----
