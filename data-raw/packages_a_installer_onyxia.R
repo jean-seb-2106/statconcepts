@@ -8,5 +8,7 @@ install.packages("roxygen2") #pour mettre à jour le package roxygen2 sur onyxia
 install.packages("kableExtra")
 install.packages("ineq")
 
-#à mettre dans le terminal au démarrage pour éviter de rentrer le mot de passe à chaque fois
+#à mettre dans le terminal au démarrage pour éviter de rentrer le mot de passe à
+# chaque fois qu'on PUSH dans Git
+
 #git config --global credential.helper store
