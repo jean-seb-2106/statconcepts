@@ -6,3 +6,6 @@ install.packages("attachment")
 install.packages("dockerfiler") #pour créer le premier fichier dockerFile
 install.packages("roxygen2") #pour mettre à jour le package roxygen2 sur onyxia
 install.packages("kableExtra")
+
+#à mettre dans le terminal au démarrage pour éviter de rentrer le mot de passe à chaque fois
+#git config --global credential.helper store
