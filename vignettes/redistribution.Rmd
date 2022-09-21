@@ -16,4 +16,32 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(statconcepts)
+library(ineq)
 ```
+
+# Afficher la courbe de Lorenz
+
+```{r}
+
+df <- grandile
+slideinput <- "REV_DISPONIBLE"
+var <- df[,slideinput]
+
+plot(Lc(var),col="darkred",lwd=4,xlab = "Part cumulée des individus (en %)",
+     ylab = "Part cumulée de la variable (en %)",main = "Courbe de Lorenz")
+
+afficher_courbe_lorenz <- function(df,
+                                   varnum,
+                                   col="darkred",
+                                   lwd=4,xlab = "Part cumulée des individus (en %)",
+                                   ylab = paste("Part cumulée de",varnum,"(en %)"),
+                                   main = " "){
+  
+  plot(Lc(df[,varnum]),col=col,lwd=lwd,xlab=xlab,ylab=ylab,main=main)
+  
+}
+afficher_courbe_lorenz(grandile,"PATRIMOINE")
+afficher_courbe_lorenz(mtcars,"wt")
+
+```
+
