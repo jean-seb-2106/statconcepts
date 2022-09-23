@@ -19,6 +19,7 @@ Imports:
     shiny (>= 1.7.1),
     stats
 Suggests: 
+    ineq,
     kableExtra,
     knitr,
     rmarkdown,

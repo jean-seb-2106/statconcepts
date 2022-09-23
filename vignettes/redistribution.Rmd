@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(statconcepts)
 library(ineq)
+library(purrr)
 ```
 
 # Afficher la courbe de Lorenz
@@ -60,4 +61,12 @@ c("Indice de Gini" = gini,"Minimum" = min,"Maximum" = max,"Rapport inter-décile
 calculer_indicateurs_redistrib(grandile,"REV_DISPONIBLE")
 
 ```
+# Formateur les indicateurs
+
+```{r}
+x <- calculer_indicateurs_redistrib(grandile,"REV_DISPONIBLE")
+y <-formater_indicateurs1(x)
+y
+```
+
 
