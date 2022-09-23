@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 library(statconcepts)
 library(ineq)
 library(purrr)
+library(dplyr)
 ```
 
 # Afficher la courbe de Lorenz
@@ -61,12 +62,39 @@ c("Indice de Gini" = gini,"Minimum" = min,"Maximum" = max,"Rapport inter-décile
 calculer_indicateurs_redistrib(grandile,"REV_DISPONIBLE")
 
 ```
-# Formateur les indicateurs
+
+# Formater les indicateurs
 
 ```{r}
+
 x <- calculer_indicateurs_redistrib(grandile,"REV_DISPONIBLE")
 y <-formater_indicateurs1(x)
 y
+
+```
+
+
+# Modification des inégalités 
+
+```{r}
+# Traitement du cas de la diminution des inégalités
+df <- grandile
+slideinput <- "REV_DISPONIBLE"
+tx_diminution <- 60 #taux de diminution des inégalités
+varnum <- sort(df[,slideinput]) # tri par ordre croissant
+ecart_varnum <- varnum - mean(varnum,na.rm = TRUE)
+varnum_apresred <- varnum - ecart_varnum*(tx_diminution/100)
+
+#courbe de Lorenz après modification de la répartition
+plot(Lc(varnum_apresred))
+
+#Calcul de l'indice de Gini après modificat
+ineq(varnum_apresred)
+ineq(varnum)
+
+
+#Traitement du cas de l'augmentation des inégalités
+
 ```
 
 

@@ -39,7 +39,7 @@ mod_redistribution_ui <- function(id){
                                           label = "Part (en %)",
                                           min = 1,
                                           max = 100,
-                                          value = 50),
+                                          value = 10),
 
                               actionButton(ns("go2"),"Calculer")
 
