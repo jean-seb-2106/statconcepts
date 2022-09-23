@@ -51,7 +51,7 @@ mod_redistribution_ui <- function(id){
 
                      column(5,wellPanel(h3("Courbe de Lorenz"),plotOutput(ns("plot1")))),
 
-                     column(3,h4("Situation initiale"),wellPanel(h4("Indice de Gini"),verbatimTextOutput(ns("text1"))),h4("Après redistribution"),wellPanel(h4("Indice de Gini")),wellPanel(h4("Minimum")),wellPanel(h4("Maximum")),wellPanel(h4("Rapport interdécile")),wellPanel(h4("Médiane"))))
+                     column(3,wellPanel(h4("Indice de Gini"),verbatimTextOutput(ns("text1"))),wellPanel(h4("Minimum"),verbatimTextOutput(ns("text2"))),wellPanel(h4("Maximum"),verbatimTextOutput(ns("text3"))),wellPanel(h4("Rapport interdécile"),verbatimTextOutput(ns("text4"))),wellPanel(h4("Médiane"),verbatimTextOutput(ns("text5")))))
 
            )
 
@@ -72,6 +72,30 @@ mod_redistribution_server <- function(id){
     })
 
     output$text1 <- renderText({
+
+      shinipsum::random_text(nchars = 4)
+
+    })
+
+    output$text2 <- renderText({
+
+      shinipsum::random_text(nchars = 4)
+
+    })
+
+    output$text3 <- renderText({
+
+      shinipsum::random_text(nchars = 4)
+
+    })
+
+    output$text4 <- renderText({
+
+      shinipsum::random_text(nchars = 4)
+
+    })
+
+    output$text5 <- renderText({
 
       shinipsum::random_text(nchars = 4)
 
