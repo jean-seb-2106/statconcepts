@@ -21,7 +21,9 @@ library(purrr)
 library(dplyr)
 ```
 
-# Afficher la courbe de Lorenz
+# Situation initiale (avant modif des inégalités)
+
+## Afficher la courbe de Lorenz
 
 ```{r}
 
@@ -41,7 +43,7 @@ afficher_courbe_lorenz(mtcars,"wt")
 
 ```
 
-# Calculer les indicateurs de redistribution
+## Calculer les indicateurs de redistribution
 
 ```{r}
 
@@ -63,7 +65,7 @@ calculer_indicateurs_redistrib(grandile,"REV_DISPONIBLE")
 
 ```
 
-# Formater les indicateurs
+## Formater les indicateurs
 
 ```{r}
 
@@ -74,27 +76,53 @@ y
 ```
 
 
-# Modification des inégalités 
+# Situation après modifications des inégalités
+
+## Afficher la courbe de Lorenz
 
 ```{r}
-# Traitement du cas de la diminution des inégalités
-df <- grandile
-slideinput <- "REV_DISPONIBLE"
-tx_diminution <- 60 #taux de diminution des inégalités
-varnum <- sort(df[,slideinput]) # tri par ordre croissant
+
+#Création d'une fonction qui prend un df et une variable en entrée et qui renvoie
+#un vecteur numérique après redistribution des revenus (augmentation ou diminution
+#des inégalités)
+
+modifier_repartition <- function(df,slideinput,dimin=TRUE,tx){
+  x <- df[,slideinput]
+  varnum <- sort(x)
+  if(dimin==TRUE){
 ecart_varnum <- varnum - mean(varnum,na.rm = TRUE)
-varnum_apresred <- varnum - ecart_varnum*(tx_diminution/100)
+varnum_apresmodif <- varnum - ecart_varnum*(tx/100)
+varnum_apresmodif
+  }else{
+n <- length(varnum)
+a <- varnum[1:n-1] #Les n-1 ménages les plus pauvres dont le revenu va être amputé
+b <- varnum[n] #Le ménage le plus riche qui prélève le revenu des autres
+varnum_apresmodif <- (1 - tx/100)*a #revenu des plus pauvres après augmentation des inégalités
+b <- b + sum(a)-sum(varnum_apresmodif) #augmentation du revenu du plus riche qui prend tous les prélèvements
+varnum_apresmodif[n] <- b
+varnum_apresmodif
+  }
+}
 
-#courbe de Lorenz après modification de la répartition
+x <- modifier_repartition(grandile,"REV_DISPONIBLE",dimin = FALSE,tx=100)
+plot(Lc(x),col="darkred",lwd=5)
+
+
+
+#courbe de Lorenz après modifications de la répartition
+
+#Diminution
 plot(Lc(varnum_apresred))
+#Augmentation
+plot(Lc(varnum_apresaug))
 
-#Calcul de l'indice de Gini après modificat
+#Calcul des indicateurs après modification de la répartition
 ineq(varnum_apresred)
 ineq(varnum)
 
 
-#Traitement du cas de l'augmentation des inégalités
-
 ```
+
+## Calculer les indicateurs
 
 
