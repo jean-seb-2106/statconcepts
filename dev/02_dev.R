@@ -28,7 +28,13 @@ golem::add_module(name = "classes_biv", with_test = TRUE) # Name of the module
 
 
 ## Add helper functions ----
+
 ## Creates fct_* and utils_*
+
+#Fonctions utilisées plusieurs modules
+golem::add_fct("formater_indicateurs1", with_test = TRUE)
+
+#Fonctions du module de valeurs extrêmes
 golem::add_fct("afficher_boxplot1", with_test = TRUE)
 golem::add_fct("afficher_histo1", with_test = TRUE)
 golem::add_fct("calculer_indicateurs1", with_test = TRUE)
@@ -36,11 +42,18 @@ golem::add_fct("ajouter_valeurs_extremes", with_test = TRUE)
 golem::add_fct("calculer_indicateurs2", with_test = TRUE)
 golem::add_fct("afficher_boxplot2", with_test = TRUE)
 golem::add_fct("afficher_histo2", with_test = TRUE)
-golem::add_fct("formater_indicateurs1", with_test = TRUE)
 golem::add_fct("select_class_df", with_test = TRUE)
+
+#Fonctions du module sur les classes
 golem::add_fct("calculer_bornes", with_test = TRUE)
 golem::add_fct("tabuler_bornes", with_test = TRUE)
 golem::add_fct("afficher_histo3", with_test = TRUE)
+
+#Fonctions du module de redistribution
+golem::add_fct("afficher_courbe_lorenz", with_test = TRUE)
+golem::add_fct("calculer_indicateurs_redistrib", with_test = TRUE)
+golem::add_fct("modifier_repartition", with_test = TRUE)
+golem::add_fct("calculer_indicateurs_redistrib_vect", with_test = TRUE)
 
 
 golem::add_utils("helpers", with_test = TRUE)
