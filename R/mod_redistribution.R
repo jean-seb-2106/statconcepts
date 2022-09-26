@@ -14,7 +14,7 @@ mod_redistribution_ui <- function(id){
 
            fluidPage(column(3,
 
-                            fluidRow(h2("Situation initiale"),wellPanel(
+                            fluidRow(wellPanel(
 
 
                               selectInput(ns("select1"),
@@ -41,11 +41,12 @@ mod_redistribution_ui <- function(id){
 
 
 
-                            ),h2("Redistribution"),wellPanel(
+                            ),wellPanel(
 
                               selectInput(ns("select4"),
-                                                                         "Choisir une redistribution",
-                                                                         choices = c("Augmenter les inégalités","Diminuer les inégalités")),
+                                            "Choisir une redistribution",
+                                            choices = c("Augmenter les inégalités","Diminuer les inégalités")
+                                            ),
 
                               sliderInput(ns("slide1"),
                                           label = "Part (en %)",
@@ -128,35 +129,45 @@ mod_redistribution_server <- function(id,global){
     output$text1 <- renderText({
 
       req(local$dt2)
-      shinipsum::random_text(nchars = 4)
+      x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+     formater_indicateurs1(x)["Indice de Gini"]
+      # shinipsum::random_text(nchars = 4)
 
     })
 
     output$text2 <- renderText({
 
       req(local$dt2)
-      shinipsum::random_text(nchars = 4)
+      x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+      formater_indicateurs1(x)["Minimum"]
+      # shinipsum::random_text(nchars = 4)
 
     })
 
     output$text3 <- renderText({
 
       req(local$dt2)
-      shinipsum::random_text(nchars = 10)
+      x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+      formater_indicateurs1(x)["Maximum"]
+      # shinipsum::random_text(nchars = 4)
 
     })
 
     output$text4 <- renderText({
 
       req(local$dt2)
-      shinipsum::random_text(nchars = 4)
+      x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+      formater_indicateurs1(x)["Rapport inter-décile"]
+      # shinipsum::random_text(nchars = 4)
 
     })
 
     output$text5 <- renderText({
 
       req(local$dt2)
-      shinipsum::random_text(nchars = 4)
+      x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+      formater_indicateurs1(x)["Médiane"]
+      # shinipsum::random_text(nchars = 4)
 
     })
 

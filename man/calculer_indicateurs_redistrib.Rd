@@ -15,7 +15,7 @@ calculer_indicateurs_redistrib(df, var)
 un vecteur de character
 }
 \description{
-Une fonction qui affiche un vecteur de character
+Une fonction qui affiche un vecteur numérique
 }
 \examples{
 calculer_indicateurs_redistrib(grandile,"REV_DISPONIBLE")

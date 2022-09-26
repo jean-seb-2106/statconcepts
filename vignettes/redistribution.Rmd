@@ -71,7 +71,11 @@ calculer_indicateurs_redistrib(grandile,"REV_DISPONIBLE")
 
 x <- calculer_indicateurs_redistrib(grandile,"REV_DISPONIBLE")
 y <-formater_indicateurs1(x)
-y
+y["Indice de Gini"]
+y["Minimum"]
+y["Maximum"]
+y["Rapport inter-décile"]
+y["Médiane"]
 
 ```
 
