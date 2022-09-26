@@ -141,7 +141,12 @@ calculer_indicateurs_redistrib_vect(x)
 ```{r}
 x <- modifier_repartition(grandile,"REV_DISPONIBLE",dimin = FALSE,tx=99)
 y <- calculer_indicateurs_redistrib_vect(x)
-formater_indicateurs1(y)
+z <- formater_indicateurs1(y)
+z["Indice de Gini"]
+z["Minimum"]
+z["Maximum"]
+z["Rapport inter-décile"]
+z["Médiane"]
 ```
 
 
