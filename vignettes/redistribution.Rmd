@@ -28,16 +28,16 @@ library(dplyr)
 ```{r}
 
 # Fonction pour afficher la courbe de Lorenz d'une variable quantitative cumulable
-afficher_courbe_lorenz <- function(df,
-                                   varnum,
-                                   col="darkred",
-                                   lwd=4,xlab = "Part cumulée des individus (en %)",
-                                   ylab = paste("Part cumulée de",varnum,"(en %)"),
-                                   main = " "){
-  
-  plot(Lc(df[,varnum]),col=col,lwd=lwd,xlab=xlab,ylab=ylab,main=main)
-  
-}
+# afficher_courbe_lorenz <- function(df,
+#                                    varnum,
+#                                    col="darkred",
+#                                    lwd=4,xlab = "Part cumulée des individus (en %)",
+#                                    ylab = paste("Part cumulée de",varnum,"(en %)"),
+#                                    main = " "){
+#   
+#   plot(Lc(df[,varnum]),col=col,lwd=lwd,xlab=xlab,ylab=ylab,main=main)
+#   
+# }
 afficher_courbe_lorenz(grandile,"PATRIMOINE")
 afficher_courbe_lorenz(mtcars,"wt")
 
@@ -48,18 +48,18 @@ afficher_courbe_lorenz(mtcars,"wt")
 ```{r}
 
 #Fonction qui renvoie un vecteur numérique avec les valeurs des indicateurs de redistribution
-calculer_indicateurs_redistrib <- function(df,var){
- 
-gini <- ineq(df[,var],type="Gini")
-min <- min(df[,var],na.rm = TRUE)
-max <- max(df[,var],na.rm = TRUE)
-rid <- quantile(df[,var],0.9,na.rm = TRUE)/quantile(df[,var],0.1,na.rm = TRUE)
-names(rid) <- ""
-median <- median(df[,var],na.rm = TRUE)
-c("Indice de Gini" = gini,"Minimum" = min,"Maximum" = max,"Rapport inter-décile" = rid,"Médiane" = median)
-
-  
-}
+# calculer_indicateurs_redistrib <- function(df,var){
+#  
+# gini <- ineq(df[,var],type="Gini")
+# min <- min(df[,var],na.rm = TRUE)
+# max <- max(df[,var],na.rm = TRUE)
+# rid <- quantile(df[,var],0.9,na.rm = TRUE)/quantile(df[,var],0.1,na.rm = TRUE)
+# names(rid) <- ""
+# median <- median(df[,var],na.rm = TRUE)
+# c("Indice de Gini" = gini,"Minimum" = min,"Maximum" = max,"Rapport inter-décile" = rid,"Médiane" = median)
+# 
+#   
+# }
 
 calculer_indicateurs_redistrib(grandile,"REV_DISPONIBLE")
 

@@ -13,13 +13,13 @@ Imports:
     dplyr,
     ggplot2,
     golem (>= 0.3.2),
+    ineq,
     purrr,
     scales,
     shinipsum,
     shiny (>= 1.7.1),
     stats
 Suggests: 
-    ineq,
     kableExtra,
     knitr,
     rmarkdown,

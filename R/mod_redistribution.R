@@ -108,41 +108,54 @@ mod_redistribution_server <- function(id,global){
 
     })
 
+    observeEvent(input$go2,{
+
+      local$dt2 <- local$dt
+      local$var <- input$select3
+
+    })
+
 
     output$plot1 <- renderPlot({
 
-      validate(need(expr = !is.null(local$dt),
+      validate(need(expr = !is.null(local$dt2),
                     message = "Choisir une variable et cliquer pour afficher la distribution"))
 
+      afficher_courbe_lorenz(local$dt2,local$var)
 
     })
 
     output$text1 <- renderText({
 
+      req(local$dt2)
       shinipsum::random_text(nchars = 4)
 
     })
 
     output$text2 <- renderText({
 
+      req(local$dt2)
       shinipsum::random_text(nchars = 4)
 
     })
 
     output$text3 <- renderText({
 
-      shinipsum::random_text(nchars = 4)
+      req(local$dt2)
+      shinipsum::random_text(nchars = 10)
 
     })
 
     output$text4 <- renderText({
 
+      req(local$dt2)
       shinipsum::random_text(nchars = 4)
 
     })
 
     output$text5 <- renderText({
 
+      req(local$dt2)
       shinipsum::random_text(nchars = 4)
 
     })
