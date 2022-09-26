@@ -18,20 +18,32 @@ mod_redistribution_ui <- function(id){
 
 
                               selectInput(ns("select1"),
-                                          "Choisir une base de données",
+                                          "1 - Choisir une base de données",
                                           choices = c("Grandile","Petitile")),
 
-                              selectInput(ns("select2"),
-                                          "Choisir une variable quantitative",
-                                          choices = c("REVENU","PATRIMOINE")),
+                              actionButton(ns("go1"),"Extraire les quantitatives"),
 
-                              actionButton(ns("go1"),"Afficher")
+                              br(),
+                              br(),
+
+                              selectInput(ns("select2"),
+                                          "2 - Sélectionner les variables cumulables",
+                                          choices = NULL,multiple = TRUE),
+
+
+                              selectInput(ns("select3"),
+                                          "3 - Choisir la variable à étudier",
+                                          choices = NULL),
+
+                              actionButton(ns("go2"),"Afficher la courbe de Lorenz")
+
+
 
 
 
                             ),h2("Redistribution"),wellPanel(
 
-                              selectInput(ns("select3"),
+                              selectInput(ns("select4"),
                                                                          "Choisir une redistribution",
                                                                          choices = c("Augmenter les inégalités","Diminuer les inégalités")),
 
@@ -61,13 +73,47 @@ mod_redistribution_ui <- function(id){
 #' redistribution Server Functions
 #'
 #' @noRd
-mod_redistribution_server <- function(id){
+mod_redistribution_server <- function(id,global){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
+    local <- reactiveValues(dt = NULL)
+
+
+
+    #Bouton qui selectionne les variables quantitatives
+    observeEvent(input$go1,{
+
+      local$dt <- if (input$select1 == "Grandile"){
+        global$dt1
+      } else if (input$select1=="Petitile"){
+        global$dt4
+      }
+      updateSelectInput(
+        session = session,
+        inputId = "select2",
+        choices = select_class_df(local$dt,"numeric")
+      )
+
+    }
+    )
+
+    observeEvent(input$select2,{
+      updateSelectInput(
+        session = session,
+        inputId = "select3",
+        choices = input$select2
+      )
+
+
+    })
+
+
     output$plot1 <- renderPlot({
 
-      shinipsum::random_ggplot()
+      validate(need(expr = !is.null(local$dt),
+                    message = "Choisir une variable et cliquer pour afficher la distribution"))
+
 
     })
 
