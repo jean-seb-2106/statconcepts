@@ -9,8 +9,8 @@ afficher_courbe_lorenz(
   varnum,
   col = "darkred",
   lwd = 4,
-  xlab = "Part cumulÃ©e des individus (en \%)",
-  ylab = paste("Part cumulÃ©e de", varnum, "(en \%)"),
+  xlab = "Part cumulée des individus (en \%)",
+  ylab = paste("Part cumulée de", varnum, "(en \%)"),
   main = " "
 )
 }

@@ -1,1 +1,1 @@
-globalVariables( c("grandile","..density..","mtcars"))
+globalVariables( c("grandile","..density..","mtcars","petitile"))
