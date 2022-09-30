@@ -52,7 +52,7 @@ mod_redistribution_ui <- function(id){
                                           label = "Part (en %)",
                                           min = 1,
                                           max = 99,
-                                          value = 10),
+                                          value = 50),
 
                               actionButton(ns("go3"),"Calculer")
 
@@ -149,8 +149,13 @@ if (is.null(local$ineg)){
     output$text1 <- renderText({
 
       req(local$dt2)
+      if (is.null(local$ineg)){
       x <- calculer_indicateurs_redistrib(local$dt2,local$var)
-     formater_indicateurs1(x)["Indice de Gini"]
+
+      }else{
+        x <- calculer_indicateurs_redistrib_vect(local$num)
+      }
+      formater_indicateurs1(x)["Indice de Gini"]
       # shinipsum::random_text(nchars = 4)
 
     })
@@ -158,7 +163,12 @@ if (is.null(local$ineg)){
     output$text2 <- renderText({
 
       req(local$dt2)
-      x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+      if (is.null(local$ineg)){
+        x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+
+      }else{
+        x <- calculer_indicateurs_redistrib_vect(local$num)
+      }
       formater_indicateurs1(x)["Minimum"]
       # shinipsum::random_text(nchars = 4)
 
@@ -167,7 +177,12 @@ if (is.null(local$ineg)){
     output$text3 <- renderText({
 
       req(local$dt2)
-      x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+      if (is.null(local$ineg)){
+        x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+
+      }else{
+        x <- calculer_indicateurs_redistrib_vect(local$num)
+      }
       formater_indicateurs1(x)["Maximum"]
       # shinipsum::random_text(nchars = 4)
 
@@ -176,7 +191,12 @@ if (is.null(local$ineg)){
     output$text4 <- renderText({
 
       req(local$dt2)
-      x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+      if (is.null(local$ineg)){
+        x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+
+      }else{
+        x <- calculer_indicateurs_redistrib_vect(local$num)
+      }
       formater_indicateurs1(x)["Rapport inter-décile"]
       # shinipsum::random_text(nchars = 4)
 
@@ -185,7 +205,12 @@ if (is.null(local$ineg)){
     output$text5 <- renderText({
 
       req(local$dt2)
-      x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+      if (is.null(local$ineg)){
+        x <- calculer_indicateurs_redistrib(local$dt2,local$var)
+
+      }else{
+        x <- calculer_indicateurs_redistrib_vect(local$num)
+      }
       formater_indicateurs1(x)["Médiane"]
       # shinipsum::random_text(nchars = 4)
 
