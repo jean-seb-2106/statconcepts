@@ -54,6 +54,7 @@ golem::add_fct("afficher_courbe_lorenz", with_test = TRUE)
 golem::add_fct("calculer_indicateurs_redistrib", with_test = TRUE)
 golem::add_fct("modifier_repartition", with_test = TRUE)
 golem::add_fct("calculer_indicateurs_redistrib_vect", with_test = TRUE)
+golem::add_fct("modifier_repartition2", with_test = TRUE)
 
 
 golem::add_utils("helpers", with_test = TRUE)
