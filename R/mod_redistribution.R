@@ -51,10 +51,10 @@ mod_redistribution_ui <- function(id){
                               sliderInput(ns("slide1"),
                                           label = "Part (en %)",
                                           min = 1,
-                                          max = 100,
+                                          max = 99,
                                           value = 10),
 
-                              actionButton(ns("go2"),"Calculer")
+                              actionButton(ns("go3"),"Calculer")
 
 
                               )
@@ -78,7 +78,7 @@ mod_redistribution_server <- function(id,global){
   moduleServer( id, function(input, output, session){
     ns <- session$ns
 
-    local <- reactiveValues(dt = NULL)
+    local <- reactiveValues(dt = NULL,dt2 = NULL,var = NULL)
 
 
 
@@ -113,16 +113,36 @@ mod_redistribution_server <- function(id,global){
 
       local$dt2 <- local$dt
       local$var <- input$select3
+      local$ineg <- NULL
 
     })
 
 
+    observeEvent(input$go3,{
+
+      local$dt3 <- local$dt2
+      local$var2 <- local$var
+      local$ineg <- if(input$select4 == "Augmenter les inégalités"){
+        FALSE
+        }else{
+          TRUE
+        }
+      local$tx <- input$slide1
+      local$num <- modifier_repartition2(df = local$dt3,slideinput = local$var2,dimin = local$ineg,tx = local$tx)
+
+    })
+
     output$plot1 <- renderPlot({
 
-      validate(need(expr = !is.null(local$dt2),
+      validate(need(expr = !is.null(local$var),
                     message = "Choisir une variable et cliquer pour afficher la courbe de Lorenz"))
 
-      afficher_courbe_lorenz(local$dt2,local$var)
+if (is.null(local$ineg)){
+  afficher_courbe_lorenz(local$dt2,local$var)
+}
+      else{
+        afficher_courbe_lorenz2(varnum = local$num,varnumlib = local$var2)
+      }
 
     })
 
