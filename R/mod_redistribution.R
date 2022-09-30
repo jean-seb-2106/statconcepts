@@ -120,7 +120,7 @@ mod_redistribution_server <- function(id,global){
     output$plot1 <- renderPlot({
 
       validate(need(expr = !is.null(local$dt2),
-                    message = "Choisir une variable et cliquer pour afficher la distribution"))
+                    message = "Choisir une variable et cliquer pour afficher la courbe de Lorenz"))
 
       afficher_courbe_lorenz(local$dt2,local$var)
 

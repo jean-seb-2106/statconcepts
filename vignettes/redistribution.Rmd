@@ -82,7 +82,7 @@ y["Médiane"]
 
 # Situation après modifications des inégalités
 
-## Afficher la courbe de Lorenz
+## Première méthode de modification des inégalités
 
 ```{r}
 
@@ -120,6 +120,8 @@ plot(Lc(x),col="darkred",lwd=5)
 
 ```
 
+## Deuxième méthode de modification des inégalités
+
 ```{r}
 
 #Autre fonction avec une augmentation des inégalités un peu plus élaborée
@@ -153,10 +155,29 @@ plot(Lc(x),col="darkred",lwd=5)
 #   }
 # }
 
-x <- modifier_repartition2(grandile,"REV_DISPONIBLE",dimin = FALSE,tx=80)
+x <- modifier_repartition2(grandile,"PATRIMOINE",dimin = FALSE,tx=99)
 plot(Lc(x),col="darkred",lwd=5)
 ```
 
+## Afficher la courbe
+
+```{r}
+# afficher_courbe_lorenz2 <- function(varnum, # vecteur numérique
+#                                     varnumlib, # valeur character
+#                                     col="darkblue",
+#                                     lwd=4,
+#                                     xlab = "Part cumulée des individus (en %)",
+#                                     ylab = paste("Part cumulée de",varnumlib,"(en %)"),
+#                                     main = " "){
+# 
+#   plot(Lc(varnum),col=col,lwd=lwd,xlab=xlab,ylab=ylab,main=main)
+# 
+# }
+
+x <- modifier_repartition2(grandile,"PATRIMOINE",dimin = FALSE,tx=80)
+afficher_courbe_lorenz2(x,"PATRIMOINE")
+
+```
 
 
 ## Calculer les indicateurs
@@ -175,7 +196,7 @@ plot(Lc(x),col="darkred",lwd=5)
 #   
 # }
 
-x <- modifier_repartition(grandile,"REV_DISPONIBLE",dimin = FALSE,tx=99)
+x <- modifier_repartition2(grandile,"REV_DISPONIBLE",dimin = FALSE,tx=99)
 calculer_indicateurs_redistrib_vect(x)
 
 
@@ -184,7 +205,7 @@ calculer_indicateurs_redistrib_vect(x)
 ## Formater les indicateurs
 
 ```{r}
-x <- modifier_repartition(grandile,"REV_DISPONIBLE",dimin = FALSE,tx=50)
+x <- modifier_repartition2(grandile,"REV_DISPONIBLE",dimin = FALSE,tx=99)
 y <- calculer_indicateurs_redistrib_vect(x)
 z <- formater_indicateurs1(y)
 z["Indice de Gini"]

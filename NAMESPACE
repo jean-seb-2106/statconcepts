@@ -3,6 +3,7 @@
 export(afficher_boxplot1)
 export(afficher_boxplot2)
 export(afficher_courbe_lorenz)
+export(afficher_courbe_lorenz2)
 export(afficher_histo1)
 export(afficher_histo2)
 export(afficher_histo3)
